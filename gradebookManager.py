@@ -3,8 +3,9 @@
 #- Use a dictionary where keys are student names and values are lists of grades.
 #- Add at least 3 students initially, each with at least 3 grades.
 gradebook = {
+    "Bob": [99, 91, 96],
     "Alice": [90, 85, 92],
-    "Bob": [78, 81, 86],
+    
     "Chloe": [64, 75, 70]
 }
 
@@ -13,6 +14,7 @@ gradebook = {
 #  - Add a new student
 #  - Add grades for an existing student
 #  - View the gradebook summary
+#  - Allow the user to remove a student or a grade.
 while True:
     choice = input("Would you like to add a new student, add grades for an existing student, remove a student or grade, or view the gradebook summary (enter new student, add grade, remove, or view): ").strip().lower()
     if choice == "new student":
@@ -75,18 +77,35 @@ while True:
 
 #3. Calculations
 #- For each student, calculate the average grade.
-#- Identify and print the student with the highest average.
-
-
-
-#4. Display
 #- Print a clear summary of all students, their grades, and their average.
-#- Example output:
-#  - Alice: [90, 85, 92] Average: 89.0
-#  - Bob: [78, 81, 86] Average: 81.7
-#  - Top Student: Alice
-
-#5. Additional Features (Required)
-#- Allow the user to remove a student or a grade.
 #- Display letter grades (A, B, C, etc.) based on averages.
+#- Identify and print the student with the highest average.
+highest_average = 0
+best_student = ("")
+
+for key, values in gradebook.items():
+    letter_grade = ""
+    average_score = sum(values) / len(values)
+    if 100 >= average_score >= 90:
+        letter_grade = "A"
+    if 90 > average_score >= 80:
+        letter_grade = "B"
+    if 80 > average_score >= 70:
+        letter_grade = "C"
+    if 70 > average_score >= 60:
+        letter_grade = "D"
+    if average_score < 60:
+        letter_grade = "F"
+    print(key + ": " + str(values) + " Average: " + str(average_score) + " Letter Grade: " + letter_grade)
+    if average_score > highest_average:
+        highest_average = average_score 
+        best_student = key
+
+print()        
+print("The student with the highest average score is " + best_student + ", with an average of " + str(highest_average) + "%")
+print()
+
 #- Sort students by average grade.
+
+avg_sorted = sorted(dict(gradebook.items(), key = lambda item: sum(item[1]/len(item[1])), reversed =  True))
+print(avg_sorted)
