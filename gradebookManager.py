@@ -3,9 +3,8 @@
 #- Use a dictionary where keys are student names and values are lists of grades.
 #- Add at least 3 students initially, each with at least 3 grades.
 gradebook = {
-    "Bob": [99, 91, 96],
+    "Bob": [29, 91, 56],
     "Alice": [90, 85, 92],
-    
     "Chloe": [64, 75, 70]
 }
 
@@ -104,8 +103,14 @@ for key, values in gradebook.items():
 print()        
 print("The student with the highest average score is " + best_student + ", with an average of " + str(highest_average) + "%")
 print()
-
+print("Students organized based on their averages (highest to lowest): ")
+print()
 #- Sort students by average grade.
 
-avg_sorted = sorted(dict(gradebook.items(), key = lambda item: sum(item[1]/len(item[1])), reversed =  True))
-print(avg_sorted)
+avg_sorted = sorted(
+    [(student, sum(grades) / len(grades)) for student, grades in gradebook.items()],
+    key=lambda item: item[1],
+    reverse=True,
+)
+for student, avg in avg_sorted:
+    print(f"{student}'s Average : {avg:.2f}")
