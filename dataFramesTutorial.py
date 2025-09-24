@@ -10,13 +10,13 @@ gFreq = [195028, 184528, 181132, 170559, 155844, 129088, 118713, 117626, 102470,
 
 df = pd.DataFrame(
     {
-        'Boys Names':bNames,
-        'Boys Frequency':bFreq, 
-        'Girls Names':gNames,
-        'Girls Frequency':gFreq
+        'Boys_Names':bNames,
+        'Boys_Frequency':bFreq, 
+        'Girls_Names':gNames,
+        'Girls_Frequency':gFreq
     }
 )
 
 print(df)
 
-print(df.describe())
+print(round(df.describe()))
