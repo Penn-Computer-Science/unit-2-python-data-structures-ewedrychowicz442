@@ -22,3 +22,5 @@ data = {
 pennData = pd.DataFrame(data)
 
 print(pennData)
+
+pennData.to_csv("pennData.csv", index = False)
